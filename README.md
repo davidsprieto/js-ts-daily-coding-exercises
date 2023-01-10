@@ -1,1 +1,1 @@
-# daily-coding-exercises
+# Daily Coding Exercises
