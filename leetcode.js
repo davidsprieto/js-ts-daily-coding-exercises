@@ -50,3 +50,26 @@
 //
 // console.log(pivotIndex(nums));
 
+
+// 01/21/2023
+//
+// let s = "paper";
+// let t = "title";
+//
+// let isIsomorphic = (s, t) => {
+//     const table = {}, tracker = {};
+//
+//     for (let i = 0; i < s.length; i++) {
+//         if (!(s[i] in table) && !(t[i] in tracker)) {
+//             table[s[i]] = t[i];
+//             tracker[t[i]] = s[i];
+//         } else {
+//             if (table[s[i]] !== t[i]) return false;
+//         }
+//     }
+//     return true;
+// }
+//
+// console.log(isIsomorphic(s, t));
+
+
