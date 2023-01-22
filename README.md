@@ -1,2 +1,2 @@
 # Daily Coding Exercises
-Leetcode dialy coding exercises.
+Leetcode daily coding exercises.
