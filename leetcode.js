@@ -100,7 +100,67 @@
 // A narcissistic number is a non-negative integer (n) with m digits where the sum of all the individual digits raised to the power m is equal to n.
 // TODO: Write a script to generate and output the first 25 narcissistic numbers:
 
+// FIRST SOLUTION:
+//
+// const sumOfOneDigitToM = (number) => {
+//   if (number === Math.pow(number, 1)) {
+//     addNumberToArray(number);
+//   }
+// }
+//
+// const sumOfTwoDigitsToM = (number) => {
+//   let first = Math.floor(number / 10);
+//   let second = Math.floor(number % 10);
+//   let result = Math.pow(first, 2) + Math.pow(second, 2);
+//
+//   if (number === result) {
+//     addNumberToArray(number)
+//   }
+// }
+//
+// const sumOfThreeDigitsToM = (number) => {
+//   let first = Math.floor(number / 100);
+//   let second = Math.floor((number % 100) / 10);
+//   let third = Math.floor((number % 100) % 10);
+//   let result = Math.pow(first, 3) + Math.pow(second, 3) + Math.pow(third, 3);
+//
+//   if (number === result) {
+//     addNumberToArray(number);
+//   }
+// }
+//
+// const sumOfFourDigitsToM = (number) => {
+//   let first = Math.floor(number / 1000);
+//   let second = Math.floor((number % 1000) / 100);
+//   let third = Math.floor(((number % 1000) / 10) % 10);
+//   let fourth = Math.floor((number % 1000) % 10);
+//   let result = Math.pow(first, 4) + Math.pow(second, 4) + Math.pow(third, 4) + Math.pow(fourth, 4);
+//
+//   if (number === result) {
+//     addNumberToArray(number);
+//   }
+// }
+//
+// while (count < 17) {
+//   for (let i = 0; i <= 9475; i++) {
+//     if (i <= 9) {
+//       sumOfOneDigitToM(i);
+//     } else if (i <= 99) {
+//       sumOfTwoDigitsToM(i);
+//     } else if (i <= 999) {
+//       sumOfThreeDigitsToM(i);
+//     } else if (i < 9999) {
+//       sumOfFourDigitsToM(i);
+//     }
+//   }
+// }
+//
+// console.log(arrayOfNarcissisticNumbers);
+
+// SECOND SOLUTION:
+
 let count = 0;
+let digit = 0;
 let arrayOfNarcissisticNumbers = [];
 
 const addNumberToArray = (number) => {
@@ -108,57 +168,21 @@ const addNumberToArray = (number) => {
   count++;
 }
 
-const sumOfOneDigitToM = (number) => {
-  if (number === Math.pow(number, 1)) {
+const checkIfNarcissistic = (number) => {
+  let a = String(number).split('');
+  let l = a.length;
+  let t = 0;
+  for (const number of a) {
+    t += Math.pow(+number, l);
+  }
+  if (t === number) {
     addNumberToArray(number);
   }
+  digit++;
 }
 
-const sumOfTwoDigitsToM = (number) => {
-  let first = Math.floor(number / 10);
-  let second = Math.floor(number % 10);
-  let result = Math.pow(first, 2) + Math.pow(second, 2);
-
-  if (number === result) {
-    addNumberToArray(number)
-  }
-}
-
-const sumOfThreeDigitsToM = (number) => {
-  let first = Math.floor(number / 100);
-  let second = Math.floor((number % 100) / 10);
-  let third = Math.floor((number % 100) % 10);
-  let result = Math.pow(first, 3) + Math.pow(second, 3) + Math.pow(third, 3);
-
-  if (number === result) {
-    addNumberToArray(number);
-  }
-}
-
-const sumOfFourDigitsToM = (number) => {
-  let first = Math.floor(number / 1000);
-  let second = Math.floor((number % 1000) / 100);
-  let third = Math.floor(((number % 1000) / 10) % 10);
-  let fourth = Math.floor((number % 1000) % 10);
-  let result = Math.pow(first, 4) + Math.pow(second, 4) + Math.pow(third, 4) + Math.pow(fourth, 4);
-
-  if (number === result) {
-    addNumberToArray(number);
-  }
-}
-
-while (count < 17) {
-  for (let i = 0; i <= 9475; i++) {
-    if (i <= 9) {
-      sumOfOneDigitToM(i);
-    } else if (i <= 99) {
-      sumOfTwoDigitsToM(i);
-    } else if (i <= 999) {
-      sumOfThreeDigitsToM(i);
-    } else if (i < 9999) {
-      sumOfFourDigitsToM(i);
-    }
-  }
+while (count < 25) {
+  checkIfNarcissistic(digit);
 }
 
 console.log(arrayOfNarcissisticNumbers);
