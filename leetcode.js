@@ -100,8 +100,7 @@
 // A narcissistic number is a non-negative integer (n) with m digits where the sum of all the individual digits raised to the power m is equal to n.
 // TODO: Write a script to generate and output the first 25 narcissistic numbers:
 
-// FIRST SOLUTION:
-//
+// FIRST SOLUTION - INCOMPLETE. I KNEW THERE WAS A BETTER/EASIER WAY TO ACCOMPLISH THE TASK. SEE SECOND SOLUTION:
 // const sumOfOneDigitToM = (number) => {
 //   if (number === Math.pow(number, 1)) {
 //     addNumberToArray(number);
@@ -158,31 +157,22 @@
 // console.log(arrayOfNarcissisticNumbers);
 
 // SECOND SOLUTION:
-
+let num = 0;
 let count = 0;
-let digit = 0;
 let arrayOfNarcissisticNumbers = [];
 
-const addNumberToArray = (number) => {
-  arrayOfNarcissisticNumbers.push(number);
-  count++;
-}
-
-const checkIfNarcissistic = (number) => {
-  let a = String(number).split('');
-  let l = a.length;
-  let t = 0;
-  for (const number of a) {
-    t += Math.pow(+number, l);
-  }
-  if (t === number) {
-    addNumberToArray(number);
-  }
-  digit++;
-}
-
 while (count < 25) {
-  checkIfNarcissistic(digit);
+  let array = String(num).split('');
+  let length = array.length;
+  let total = 0;
+  for (const number of array) {
+    total += Math.pow(+number, length);
+  }
+  if (total === num) {
+    arrayOfNarcissisticNumbers.push(num);
+    count++;
+  }
+  num++;
 }
 
 console.log(arrayOfNarcissisticNumbers);
