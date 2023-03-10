@@ -1,2 +1,2 @@
 # Daily Coding Exercises
-Leetcode daily coding exercises.
+Leetcode && Codeup coding challenges.
