@@ -98,6 +98,7 @@ console.log(arrayOfNarcissisticNumbers);
 // Input: −7, 1, −3, 4, −1, 2, 1, −5, 4
 // Output: 6
 
+/*
 const maximumSubsequenceSum = (array) => {
   let i, sum;
   let j = 1;
@@ -127,3 +128,34 @@ const maximumSubsequenceSum = (array) => {
 
 let array = [-7, 1, -3, 4, -1, 2, 1, -5, 4];
 maximumSubsequenceSum(array);
+ */
+
+// 03/10/2023 - String Reversal:
+// TODO: Write a function that takes in a string variable and returns that string reversed.
+//  While most languages provide their own built-in functions to do this, the point of this challenge is to write your own.
+
+// First Solution:
+let string = "Hello, my name is David.";
+let reverse;
+
+const reverseString = (string) => {
+  return string.split('').reverse().join('');
+}
+
+reverse = reverseString(string);
+console.log(reverse);
+
+
+// Another Solution:
+let s = "I am a computer science student seeking to master my craft of software development.";
+
+const reverseStringAgain = (s) => {
+  let r = '';
+  for (let i = s.length - 1; i >= 0; i--) {
+    r += s[i];
+  }
+  return r;
+}
+
+let r = reverseStringAgain(s);
+console.log(r);
