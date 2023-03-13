@@ -135,6 +135,7 @@ maximumSubsequenceSum(array);
 //  While most languages provide their own built-in functions to do this, the point of this challenge is to write your own.
 
 // First Solution:
+/*
 let string = "Hello, my name is David.";
 let reverse;
 
@@ -159,3 +160,38 @@ const reverseStringAgain = (s) => {
 
 let r = reverseStringAgain(s);
 console.log(r);
+ */
+
+
+// 03/13/2023 - Sum Up Those Digits:
+// TODO: Create a function that will:
+// Accept any number as input.
+// Validate that input and convert it to an integer as necessary.
+// Return the sum of the individual digits of that integer.
+
+const sumOfDigits = (number) => {
+  if (typeof number !== 'number') {
+    return -1;
+  } else {
+    let sum = 0;
+    number = String(number).split('');
+    if (number[0] === '-') {
+      sum = number.at(1) * -1;
+    }
+    if (number.length === 1) {
+      return number.at(0);
+    }
+    if (number.length === 2) {
+      return sum;
+    } else {
+      number = number.slice(2);
+    }
+    for (const digit of number) {
+      sum += +digit;
+    }
+    return sum;
+  }
+}
+
+let number = -12;
+console.log(sumOfDigits(number));
