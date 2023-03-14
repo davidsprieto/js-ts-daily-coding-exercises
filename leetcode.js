@@ -76,7 +76,7 @@ console.log(isIsomorphic(s, t));
  */
 
 
-// 01/23/2023 - #392 - Is Subsequence
+// 01/23/2023 - #392. Is Subsequence
 /*
 let s = "abc";
 let t = "ahbgdc";
@@ -101,3 +101,26 @@ isSubsequence(s, t);
  */
 
 
+// 03/14/2023 - #1. Two Sum:
+// TODO: Given an array of integers 'nums' and an integer 'target',
+//  return indices of the two numbers such that they add up to the target.
+
+const twoSum = (nums, target) => {
+  let sum;
+  let indices = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j > i && j < nums.length; j++) {
+      sum = 0;
+      sum += nums[i] + nums[j];
+      if (sum === target) {
+         indices.push(i, j);
+         return indices;
+      }
+    }
+  }
+}
+
+let nums = [3, 2, 4];
+let target = 6;
+console.log(twoSum(nums, target));
