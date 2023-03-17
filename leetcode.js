@@ -104,7 +104,7 @@ isSubsequence(s, t);
 // 03/14/2023 - #1. Two Sum:
 // TODO: Given an array of integers 'nums' and an integer 'target',
 //  return indices of the two numbers such that they add up to the target.
-
+/*
 const twoSum = (nums, target) => {
   let sum;
   let indices = [];
@@ -124,3 +124,48 @@ const twoSum = (nums, target) => {
 let nums = [3, 2, 4];
 let target = 6;
 console.log(twoSum(nums, target));
+ */
+
+
+// 03/17/2023 - #13. Roman to Integer:
+// TODO: Given a Roman numeral, convert it to an integer.
+
+const romanToInt = (r) => {
+  r = r.split('');
+  for (let i = 0; i < r.length; i++) {
+    if (r[i] === 'I') {
+      r[i] = 1;
+    } else if (r[i] === 'V') {
+      r[i] = 5;
+    } else if (r[i] === 'X') {
+      r[i] = 10;
+    } else if (r[i] === 'L') {
+      r[i] = 50;
+    } else if (r[i] === 'C') {
+      r[i] = 100;
+    } else if (r[i] === 'D') {
+      r[i] = 500;
+    } else {
+      r[i] = 1000;
+    }
+  }
+  for (let j = 0; j < r.length; j++) {
+    if (r[j] === 1 && r[j + 1] === 5) {
+      r.splice(r.indexOf(1), 2, 4);
+    } else if (r[j] === 1 && r[j + 1] === 10) {
+      r.splice(r.indexOf(1), 2, 9);
+    } else if (r[j] === 10 && r[j + 1] === 50) {
+      r.splice(r.indexOf(10), 2, 40);
+    } else if (r[j] === 10 && r[j + 1] === 100) {
+      r.splice(r.indexOf(10), 2, 90);
+    } else if (r[j] === 100 && r[j + 1] === 500) {
+      r.splice(r.indexOf(100), 2, 400);
+    } else if (r[j] === 100 && r[j + 1] === 1000) {
+      r.splice(r.indexOf(100), 2, 900);
+    }
+  }
+  return r.reduce((sum, n) => sum + n, 0);
+}
+
+let r = 'XIVI';
+romanToInt(r);
