@@ -92,6 +92,8 @@ const runPasswordGeneratorScript = () => {
         randomDigits(passwordDigits);
     }
     randomLetter();
+    console.log(password);
+    console.log(shufflePassword(password));
     return shufflePassword(password);
 };
 runPasswordGeneratorScript();

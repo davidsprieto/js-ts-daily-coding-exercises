@@ -315,6 +315,9 @@ const runPasswordGeneratorScript = (): string => {
   }
   randomLetter();
 
+  console.log(password);
+  console.log(shufflePassword(password));
+
   return shufflePassword(password);
 }
 runPasswordGeneratorScript();
