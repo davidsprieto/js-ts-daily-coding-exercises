@@ -206,22 +206,22 @@ console.log(sumOfDigits(number));
 //  - number of digits (including none)
 //  - whether to use upper case, lower case, or both.
 
+// Create type & Declare variables for generate random password script:
 type StringOrNumber = string | number;
 
-let passwordSpecs: StringOrNumber[] = [];
 let passwordLength: number;
 let passwordSpecialChars: number;
 let passwordDigits: number;
 let passwordCase: string;
+let password: StringOrNumber[] = [];
 
-const runPasswordGeneratorScript = (): void => {
+// Generate random password script:
+const runPasswordGeneratorScript = (): string => {
   alert("Welcome to random password generator, please answer the following questions in order to properly generate your password with your desired specifications.");
 
   const passwordLengthPrompt = (): void => {
     passwordLength = +prompt("Please enter the length of your password (must contain at least 10 characters):")! as number;
-    if (passwordLength >= 10) {
-      passwordSpecs.push(passwordLength);
-    } else {
+    if (passwordLength < 10) {
       alert("Incorrect password length!");
       passwordLengthPrompt();
     }
@@ -230,9 +230,7 @@ const runPasswordGeneratorScript = (): void => {
 
   const passwordSpecialCharsPrompt = (): void => {
     passwordSpecialChars = +prompt("How many special characters would you like in your password? (enter '0' if none):")! as number;
-    if (passwordSpecialChars >= 0) {
-      passwordSpecs.push(passwordSpecialChars);
-    } else {
+    if (passwordSpecialChars < 0) {
       alert("Incorrect input!");
       passwordSpecialCharsPrompt();
     }
@@ -241,9 +239,7 @@ const runPasswordGeneratorScript = (): void => {
 
   const passwordDigitsPrompt = (): void => {
     passwordDigits = +prompt("How many digits would you like in your password? (enter '0' if none):")! as number;
-    if (passwordDigits >= 0) {
-      passwordSpecs.push(passwordDigits);
-    } else {
+    if (passwordDigits < 0) {
       alert("Incorrect input!");
       passwordDigitsPrompt();
     }
@@ -251,20 +247,77 @@ const runPasswordGeneratorScript = (): void => {
   passwordDigitsPrompt();
 
   const passwordCasePrompt = (): void => {
-    passwordCase = prompt("Would you like your password to include upper case, lower case, or both types of cases in your password?") as string;
+    passwordCase = prompt("Would you like your password to include upper case, lower case, or both types of cases in your password?")! as string;
     passwordCase = passwordCase.toLowerCase().trim().replace(" ", "");
-    if (passwordCase === "uppercase" || "lowercase" || "both") {
-      passwordSpecs.push(passwordCase);
-    } else {
+    if (passwordCase !== "uppercase" && passwordCase !== "lowercase" && passwordCase !== "both") {
       alert("Incorrect input!");
       passwordCasePrompt();
     }
   }
   passwordCasePrompt();
-  console.log(passwordSpecs);
+
+
+  const randomNumber = (): number => {
+    return Math.floor(Math.random() * 27);
+  }
+
+  const randomSpecialChar = (amount: number): void => {
+    const specialCharsList: string = "!@#$%^&*()_-+<>?,./{}[]|~=";
+
+    while (password.length !== amount) {
+      password.push(specialCharsList.charAt(randomNumber()));
+    }
+  }
+
+  const randomDigits = (amount: number): void => {
+    while (password.length !== (password.length + amount)) {
+      password.push(Math.floor(Math.random() * 10));
+    }
+  }
+
+  const randomLetter = (): void => {
+    const lowerLetterList: string = "abcdefghijklmnopqrstuvwxyz";
+    const upperLetterList: string = "ABCDEFGHIJKLMNOPQRSTUVWXZY";
+
+    if (passwordCase === "uppercase") {
+      while (password.length !== passwordLength) {
+        password.push(upperLetterList.charAt(randomNumber()));
+      }
+    } else if (passwordCase === "lowercase") {
+      while (password.length !== passwordLength) {
+        password.push(lowerLetterList.charAt(randomNumber()));
+      }
+    } else {
+      while (password.length !== passwordLength) {
+        password.push(upperLetterList.charAt(randomNumber()));
+        password.push(lowerLetterList.charAt(randomNumber()));
+      }
+    }
+  }
+
+  const shufflePassword = (array: StringOrNumber[]): string => {
+    const newArray: StringOrNumber[] = [...array];
+    const length: number = newArray.length;
+
+    for (let i = 0; i < length; i++) {
+      const randomPosition = Math.floor(newArray.length - i);
+      const randomValue = newArray.splice(randomPosition, 1);
+      newArray.push(...randomValue);
+    }
+    return newArray.join('');
+  }
+
+  if (passwordSpecialChars > 0) {
+    randomSpecialChar(passwordSpecialChars);
+  }
+  if (passwordDigits > 0) {
+    randomDigits(passwordDigits);
+  }
+  randomLetter();
+
+  return shufflePassword(password);
 }
 runPasswordGeneratorScript();
 
 const buttonTriggerPasswordGeneratorScript = document.querySelector("button")! as HTMLButtonElement;
 buttonTriggerPasswordGeneratorScript.addEventListener("click", runPasswordGeneratorScript);
-
