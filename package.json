@@ -1,6 +1,15 @@
 {
   "name": "daily-coding-exercises",
   "version": "1.0.0",
-  "dependencies": {
+  "main": "codeup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
   }
 }
