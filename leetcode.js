@@ -131,42 +131,81 @@ console.log(twoSum(nums, target));
 // 03/17/2023 - #13. Roman to Integer:
 // TODO: Given a Roman numeral, convert it to an integer.
 
-const romanToInt = (r) => {
-  r = r.split('');
-  for (let i = 0; i < r.length; i++) {
-    if (r[i] === 'I') {
-      r[i] = 1;
-    } else if (r[i] === 'V') {
-      r[i] = 5;
-    } else if (r[i] === 'X') {
-      r[i] = 10;
-    } else if (r[i] === 'L') {
-      r[i] = 50;
-    } else if (r[i] === 'C') {
-      r[i] = 100;
-    } else if (r[i] === 'D') {
-      r[i] = 500;
-    } else {
-      r[i] = 1000;
+// const romanToInt = (r) => {
+//   r = r.split('');
+//   for (let i = 0; i < r.length; i++) {
+//     if (r[i] === 'I') {
+//       r[i] = 1;
+//     } else if (r[i] === 'V') {
+//       r[i] = 5;
+//     } else if (r[i] === 'X') {
+//       r[i] = 10;
+//     } else if (r[i] === 'L') {
+//       r[i] = 50;
+//     } else if (r[i] === 'C') {
+//       r[i] = 100;
+//     } else if (r[i] === 'D') {
+//       r[i] = 500;
+//     } else {
+//       r[i] = 1000;
+//     }
+//   }
+//   for (let j = 0; j < r.length; j++) {
+//     if (r[j] === 1 && r[j + 1] === 5) {
+//       r.splice(r.indexOf(1), 2, 4);
+//     } else if (r[j] === 1 && r[j + 1] === 10) {
+//       r.splice(r.indexOf(1), 2, 9);
+//     } else if (r[j] === 10 && r[j + 1] === 50) {
+//       r.splice(r.indexOf(10), 2, 40);
+//     } else if (r[j] === 10 && r[j + 1] === 100) {
+//       r.splice(r.indexOf(10), 2, 90);
+//     } else if (r[j] === 100 && r[j + 1] === 500) {
+//       r.splice(r.indexOf(100), 2, 400);
+//     } else if (r[j] === 100 && r[j + 1] === 1000) {
+//       r.splice(r.indexOf(100), 2, 900);
+//     }
+//   }
+//   return r.reduce((sum, n) => sum + n, 0);
+// }
+//
+// let r = 'XIVI';
+// romanToInt(r);
+
+
+// 03/26/2023 - #14. Longest Common Prefix:
+// TODO: Write a function to find the longest common prefix string amongst an array of strings.
+//  If there is no common prefix, return an empty string "".
+
+const longestCommonPrefix = (array) => {
+  if (array.length === 1) {
+    return array[0];
+  }
+  for (let string of array) {
+    if (string === "") {
+      return "";
     }
   }
-  for (let j = 0; j < r.length; j++) {
-    if (r[j] === 1 && r[j + 1] === 5) {
-      r.splice(r.indexOf(1), 2, 4);
-    } else if (r[j] === 1 && r[j + 1] === 10) {
-      r.splice(r.indexOf(1), 2, 9);
-    } else if (r[j] === 10 && r[j + 1] === 50) {
-      r.splice(r.indexOf(10), 2, 40);
-    } else if (r[j] === 10 && r[j + 1] === 100) {
-      r.splice(r.indexOf(10), 2, 90);
-    } else if (r[j] === 100 && r[j + 1] === 500) {
-      r.splice(r.indexOf(100), 2, 400);
-    } else if (r[j] === 100 && r[j + 1] === 1000) {
-      r.splice(r.indexOf(100), 2, 900);
+  array = array.sort((a, b) => {
+    return a.length - b.length;
+  });
+  let count = 0;
+  let prefix = "";
+  let letter = "";
+  for (let i = 0; i < array[0].length; i++) {
+    count = 0;
+    letter = array[count][i];
+    for (let j = 1; j < array.length; j++) {
+      if (letter === array[j][i]) {
+        count++;
+      } else {
+        return prefix;
+      }
+    }
+    if (count === array.length - 1) {
+      prefix += letter;
     }
   }
-  return r.reduce((sum, n) => sum + n, 0);
+  return prefix;
 }
 
-let r = 'XIVI';
-romanToInt(r);
+longestCommonPrefix(["flower", "flow", "flight"]);
