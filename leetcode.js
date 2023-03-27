@@ -221,6 +221,12 @@ longestCommonPrefix(["flower", "flow", "flight"]);
 //  Open brackets must be closed in the correct order.
 //  Every close bracket has a corresponding open bracket of the same type.
 
+const pairs = {
+  "(" : ")",
+  "[" :"]",
+  "{" : "}"
+}
+
 const isValid = (s) => {
   let stack = [];
   let closing = s[0] === ")" || s[0] === "]" || s[0] === "}";
@@ -232,18 +238,10 @@ const isValid = (s) => {
   }
 
   for (let i = 0; i < s.length; i++) {
-    if (s.charAt(i) === "(" || s.charAt(i) === "[" || s.charAt(i) === "{") {
-      stack.push(s.charAt(i));
-    } else {
-      if (s.charAt(i) === ")" && stack.at(stack.length - 1) === "(") {
-        stack.splice(stack.length - 1);
-      } else if (s.charAt(i) === "]" && stack.at(stack.length - 1) === "[") {
-        stack.splice(stack.length - 1);
-      } else if (s.charAt(i) === "}" && stack.at(stack.length - 1) === "{") {
-        stack.splice(stack.length - 1);
-      } else {
-        return false;
-      }
+    if (s[i] === "(" || s[i] === "[" || s[i] === "{") {
+      stack.push(s[i]);
+    } else if (pairs[stack.pop()] !== s[i]) {
+      return false;
     }
   }
 
