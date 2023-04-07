@@ -207,6 +207,7 @@ console.log(sumOfDigits(number));
 //  - whether to use upper case, lower case, or both.
 
 // Create type & Declare variables for generate random password script:
+/*
 type StringOrNumber = string | number;
 
 let passwordLength: number;
@@ -324,3 +325,24 @@ runPasswordGeneratorScript();
 
 const buttonTriggerPasswordGeneratorScript = document.querySelector("button")! as HTMLButtonElement;
 buttonTriggerPasswordGeneratorScript.addEventListener("click", runPasswordGeneratorScript);
+ */
+
+
+// 04/07/2023 - TODO: Return value from an array at a random index
+let restaurants: string[] = ['Harbor Kitchen and Tap', 'The Shanty', 'Woodfire Tavern', 'Park Street', 'Shakou'];
+
+const shuffle = (input: string[]) => {
+  return input.sort(() => Math.random() - 0.5);
+}
+
+const random = () => {
+  return Math.floor(Math.random() * 5);
+}
+
+const choose = (input: string[]) => {
+  let shuffled = shuffle(input);
+  let randomNumber = random();
+  return shuffled[randomNumber];
+}
+
+choose(restaurants);
