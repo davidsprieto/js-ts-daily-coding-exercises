@@ -254,16 +254,31 @@ console.log(isValid(s));
  */
 
 
-// 03/28/23 - #21. Merge Two Sorted Lists:
-// TODO: You are given the heads of two sorted linked lists 'list1' and 'list2'.
-//  Merge the two lists in a one sorted list. The list should be made by splicing
-//  together the nodes of the first two lists.
-//  Return the head of the merged linked list.
+// 04/28/23 - #121. Best Time to Buy and Sell Stock:
+// TODO: You are given an array prices where prices[i] is the price of a given stock on the ith day.
+//  You want to maximize your profit by choosing a single day to buy one stock and choosing a different
+//  day in the future to sell that stock. Return the maximum profit you can achieve from this transaction.
+//  If you cannot achieve any profit, return 0.
 
-const mergeTwoLists = (list1, list2) => {
+const maxProfit = (prices) => {
+  let left = 0;
+  let right = 1;
+  let profit;
+  let maxProfit = 0;
 
+  while (right < prices.length) {
+
+    if (prices[left] < prices[right]) {
+      profit = prices[right] - prices[left];
+      maxProfit = Math.max(maxProfit, profit);
+    } else {
+      left = right;
+    }
+    right++;
+
+  }
+  return maxProfit;
 }
 
-let list1 = [1, 2, 4];
-let list2 = [1, 3, 4];
-console.log(mergeTwoLists(list1, list2));
+const arrayOfNums = [7, 1, 5, 3, 6, 4];
+maxProfit(arrayOfNums);
