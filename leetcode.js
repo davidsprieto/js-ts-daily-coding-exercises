@@ -260,25 +260,68 @@ console.log(isValid(s));
 //  day in the future to sell that stock. Return the maximum profit you can achieve from this transaction.
 //  If you cannot achieve any profit, return 0.
 
-const maxProfit = (prices) => {
-  let left = 0;
-  let right = 1;
-  let profit;
-  let maxProfit = 0;
+// const maxProfit = (prices) => {
+//   let left = 0;
+//   let right = 1;
+//   let profit;
+//   let maxProfit = 0;
+//
+//   while (right < prices.length) {
+//
+//     if (prices[left] < prices[right]) {
+//       profit = prices[right] - prices[left];
+//       maxProfit = Math.max(maxProfit, profit);
+//     } else {
+//       left = right;
+//     }
+//     right++;
+//
+//   }
+//   return maxProfit;
+// }
+//
+// const arrayOfNums = [7, 1, 5, 3, 6, 4];
+// maxProfit(arrayOfNums);
 
-  while (right < prices.length) {
 
-    if (prices[left] < prices[right]) {
-      profit = prices[right] - prices[left];
-      maxProfit = Math.max(maxProfit, profit);
-    } else {
-      left = right;
-    }
-    right++;
+// 05/01/2023 - #21. Merge Two Sorted Lists:
+// TODO: You are given the heads of two sorted linked lists list1 and list2.
+//  Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+//  Return the head of the merged linked list.
 
+class ListNode {
+  constructor(value, next) {
+    this.value = (value === undefined ? 0 : value);
+    this.next = (next === undefined ? null : next);
   }
-  return maxProfit;
 }
 
-const arrayOfNums = [7, 1, 5, 3, 6, 4];
-maxProfit(arrayOfNums);
+const mergeTwoLists = (list1, list2) => {
+  let combined = new ListNode();
+  const head = combined;
+  while (list1 && list2) {
+    if (list1.value < list2.value) {
+      combined.next = list1;
+      list1 = list1.next;
+    } else {
+      combined.next = list2;
+      list2 = list2.next;
+    }
+    combined = combined.next;
+  }
+  if (list1) {
+    combined.next = list1;
+  }
+  if (list2) {
+    combined.next = list2;
+  }
+  return head.next;
+}
+
+let list1 = new ListNode(1, 2);
+list1.next = 4;
+
+let list2 = new ListNode(1, 3);
+list2.next = 4;
+
+mergeTwoLists(list1, list2);
