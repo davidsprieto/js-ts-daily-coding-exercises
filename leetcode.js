@@ -260,28 +260,30 @@ console.log(isValid(s));
 //  day in the future to sell that stock. Return the maximum profit you can achieve from this transaction.
 //  If you cannot achieve any profit, return 0.
 
-// const maxProfit = (prices) => {
-//   let left = 0;
-//   let right = 1;
-//   let profit;
-//   let maxProfit = 0;
-//
-//   while (right < prices.length) {
-//
-//     if (prices[left] < prices[right]) {
-//       profit = prices[right] - prices[left];
-//       maxProfit = Math.max(maxProfit, profit);
-//     } else {
-//       left = right;
-//     }
-//     right++;
-//
-//   }
-//   return maxProfit;
-// }
-//
-// const arrayOfNums = [7, 1, 5, 3, 6, 4];
-// maxProfit(arrayOfNums);
+/*
+const maxProfit = (prices) => {
+  let left = 0;
+  let right = 1;
+  let profit;
+  let maxProfit = 0;
+
+  while (right < prices.length) {
+
+    if (prices[left] < prices[right]) {
+      profit = prices[right] - prices[left];
+      maxProfit = Math.max(maxProfit, profit);
+    } else {
+      left = right;
+    }
+    right++;
+
+  }
+  return maxProfit;
+}
+
+const arrayOfNums = [7, 1, 5, 3, 6, 4];
+maxProfit(arrayOfNums);
+ */
 
 
 // 05/01/2023 - #21. Merge Two Sorted Lists:
@@ -289,6 +291,7 @@ console.log(isValid(s));
 //  Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
 //  Return the head of the merged linked list.
 
+/*
 class ListNode {
   constructor(value, next) {
     this.value = (value === undefined ? 0 : value);
@@ -325,3 +328,36 @@ let list2 = new ListNode(1, 3);
 list2.next = 4;
 
 mergeTwoLists(list1, list2);
+ */
+
+
+// 05/08/2023 - #1768. Merge Strings Alternately
+// TODO: You are given two strings word1 and word2.
+//  Merge the strings by adding letters in alternating order, starting with word1.
+//  If a string is longer than the other, append the additional letters onto the end of the merged string.
+
+const mergeAlternately = (word1, word2) => {
+  let index = 0;
+  let count = 0;
+  let merged = '';
+  let length = Math.min(word1.length, word2.length);
+
+  while (count < length) {
+    merged += word1[index];
+    word1 = word1.slice(index + 1);
+    merged += word2[index];
+    word2 = word2.slice(index + 1);
+    count++;
+  }
+  if (word1) {
+    merged += word1;
+  }
+  if (word2) {
+    merged += word2;
+  }
+  return merged;
+}
+
+let word1 = "ab";
+let word2 = "pqrs";
+console.log(mergeAlternately(word1, word2));
