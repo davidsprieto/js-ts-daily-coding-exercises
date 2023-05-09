@@ -336,6 +336,7 @@ mergeTwoLists(list1, list2);
 //  Merge the strings by adding letters in alternating order, starting with word1.
 //  If a string is longer than the other, append the additional letters onto the end of the merged string.
 
+/*
 const mergeAlternately = (word1, word2) => {
   let index = 0;
   let count = 0;
@@ -361,3 +362,26 @@ const mergeAlternately = (word1, word2) => {
 let word1 = "ab";
 let word2 = "pqrs";
 console.log(mergeAlternately(word1, word2));
+ */
+
+
+// 05/09/2023 - #1071. Greatest Common Divisor of Strings
+// TODO: For two strings s and t, we say "t divides s" if and only if
+//  s = t + ... + t (i.e., t is concatenated with itself one or more times).
+//  Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+
+// Solution: Euclidean Algorithm
+const gcdOfStrings = (str1, str2) => {
+  if (str1 + str2 !== str2 + str1) {
+    return "";
+  }
+
+  const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+  const length = gcd(str1.length, str2.length);
+
+  return str1.substring(0, length);
+}
+
+let str1 = "ABCABC";
+let str2 = "ABC";
+console.log(gcdOfStrings(str1, str2));
