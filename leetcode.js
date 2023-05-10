@@ -371,6 +371,8 @@ console.log(mergeAlternately(word1, word2));
 //  Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
 
 // Solution: Euclidean Algorithm
+
+/*
 const gcdOfStrings = (str1, str2) => {
   if (str1 + str2 !== str2 + str1) {
     return "";
@@ -385,3 +387,55 @@ const gcdOfStrings = (str1, str2) => {
 let str1 = "ABCABC";
 let str2 = "ABC";
 console.log(gcdOfStrings(str1, str2));
+ */
+
+
+// 05/10/2023 - #1431. Kids With the Greatest Number of Candies
+// TODO: There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies
+//  the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+//  Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies,
+//  they will have the greatest number of candies among all the kids, or false otherwise.
+//  Note that multiple kids can have the greatest number of candies.
+
+const kidsWithCandies = (candies, extraCandies) => {
+  let array = [];
+  let index = 0;
+  let greatest = false;
+
+  while (index < candies.length) {
+    for (let i = 0; i < candies.length; i++) {
+      if (i === index && i !== candies.length - 1) {
+        i++;
+      }
+      if (candies[index] + extraCandies >= candies[i]) {
+        greatest = true;
+      } else {
+        greatest = false;
+        break;
+      }
+    }
+    array.push(greatest);
+    index++;
+  }
+  return array;
+}
+
+
+// Refactored for a more optimal solution
+const kidsWithCandiesRefactored = (candies, extraCandies) => {
+  let maxOfCandies = Math.max(...candies);
+  let result = [];
+
+  for (const i of candies) {
+    if (i + extraCandies >= maxOfCandies) {
+      result.push(true);
+    } else {
+      result.push(false);
+    }
+  }
+  return result;
+}
+
+let candies = [2, 3, 5, 1, 3];
+let extraCandies = 3;
+console.log(kidsWithCandiesRefactored(candies, extraCandies));
