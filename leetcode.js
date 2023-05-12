@@ -448,7 +448,7 @@ console.log(kidsWithCandiesRefactored(candies, extraCandies));
 //  Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new
 //  flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
 
-
+/*
 const canPlaceFlowers = (flowerbed, n) => {
   if (!n) {
     return true;
@@ -468,3 +468,38 @@ const canPlaceFlowers = (flowerbed, n) => {
 let flowerbed = [1, 0, 0, 0, 1, 0, 1, 0, 0];
 let n = 1;
 canPlaceFlowers(flowerbed, n);
+ */
+
+
+// 05/12/2023 - #345. Reverse Vowels of a String
+// TODO: Given a string s, reverse only all the vowels in the string and return it.
+//  The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+const reverseVowels = (s) => {
+  s = s.split('');
+  let vowels = [];
+  let indexes = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 'a' || s[i] === 'e' || s[i] === 'i' || s[i] === 'o' || s[i] === 'u'
+      || s[i] === 'A' || s[i] === 'E' || s[i] === 'I' || s[i] === 'O' || s[i] === 'U') {
+      vowels.push(s[i]);
+      indexes.push(i);
+    }
+  }
+  vowels.reverse();
+
+  let pointer = 0;
+  while (pointer < indexes.length) {
+    for (let i = 0; i < s.length; i++) {
+      if (i === indexes[pointer]) {
+        s[i] = vowels[pointer];
+        pointer++;
+      }
+    }
+  }
+  return s.join('');
+}
+
+let s = "leetcode";
+console.log(reverseVowels(s));
