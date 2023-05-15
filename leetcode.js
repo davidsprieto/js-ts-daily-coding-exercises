@@ -467,7 +467,7 @@ const canPlaceFlowers = (flowerbed, n) => {
 
 let flowerbed = [1, 0, 0, 0, 1, 0, 1, 0, 0];
 let n = 1;
-canPlaceFlowers(flowerbed, n);
+console.log(canPlaceFlowers(flowerbed, n));
  */
 
 
@@ -475,6 +475,7 @@ canPlaceFlowers(flowerbed, n);
 // TODO: Given a string s, reverse only all the vowels in the string and return it.
 //  The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
 
+/*
 const reverseVowels = (s) => {
   s = s.split('');
   let vowels = [];
@@ -503,3 +504,21 @@ const reverseVowels = (s) => {
 
 let s = "leetcode";
 console.log(reverseVowels(s));
+ */
+
+
+// 05/15/2023 - #151. Reverse Words in a String
+// TODO: Given an input string s, reverse the order of the words.
+//  A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+//  Return a string of the words in reverse order concatenated by a single space.
+//  Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should
+//  only have a single space separating the words. Do not include any extra spaces.
+
+const reverseWords = (s) => {
+  s = s.replace(/  +/g, " ").trim();
+  s = s.split(" ").reverse();
+  return s.join(" ");
+}
+
+let s = "  the sky is     blue  ";
+reverseWords(s);
