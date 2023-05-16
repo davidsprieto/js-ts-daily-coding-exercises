@@ -514,6 +514,7 @@ console.log(reverseVowels(s));
 //  Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should
 //  only have a single space separating the words. Do not include any extra spaces.
 
+/*
 const reverseWords = (s) => {
   s = s.replace(/  +/g, " ").trim();
   s = s.split(" ").reverse();
@@ -522,3 +523,33 @@ const reverseWords = (s) => {
 
 let s = "  the sky is     blue  ";
 reverseWords(s);
+ */
+
+
+// 05/16/2023 - #238. Product of Array Except Self
+// TODO: Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+//  The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+//  You must write an algorithm that runs in O(n) time and without using the division operation.
+
+const productExceptSelf = (nums) => {
+  let productArray = [];
+  let index = 0;
+
+  while (index < nums.length) {
+    let product = 1;
+    for (let i = 0; i < nums.length; i++) {
+      if (index !== i) {
+        product *= nums[i];
+      }
+    }
+    if (product === -0) {
+      product = 0;
+    }
+    productArray.push(product);
+    index++;
+  }
+  return productArray;
+}
+
+let nums = [-1, 1, 0, -3, 3];
+console.log(productExceptSelf(nums));
