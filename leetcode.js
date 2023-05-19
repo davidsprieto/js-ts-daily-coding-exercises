@@ -556,7 +556,7 @@ let nums = [-1, 1, 0, -3, 3];
 console.log(productExceptSelf(nums));
  */
 
-
+/*
 // Alternate solution:
 const productExceptSelf2 = (nums) => {
   const length = nums.length;
@@ -578,3 +578,54 @@ const productExceptSelf2 = (nums) => {
 
 let nums = [1, 2, 3, 4];
 productExceptSelf2(nums);
+ */
+
+
+// 05/19/2023 - #443. String Compression
+// TODO: Given an array of characters chars, compress it using the following algorithm:
+//  Begin with an empty string s. For each group of consecutive repeating characters in chars:
+//  If the group's length is 1, append the character to s.
+//  Otherwise, append the character followed by the group's length.
+//  The compressed string s should not be returned separately, but instead, be stored in the input character array chars. Note that group lengths that are 10 or longer will be split into multiple characters in chars.
+//  After you are done modifying the input array, return the new length of the array.
+//  You must write an algorithm that uses only constant extra space.
+
+const compress = (chars) => {
+  let s = "";
+  let current = 0;
+  let count  = 1;
+  let next = 1;
+
+  if (chars.length === 1) {
+    return chars.length;
+  }
+
+  chars.push(" ");
+  while (next < chars.length) {
+    if (chars[current] === chars[next]) {
+      count++;
+      next++;
+    }
+    if (chars[current] !== chars[next] && count === 1) {
+      s += chars[current];
+      current = next;
+      next++;
+      count = 1;
+    } else if (chars[current] !== chars[next]) {
+      s += chars[current];
+      s += count;
+      current = next;
+      next++;
+      count = 1;
+    }
+  }
+
+  chars.splice(s.length);
+  for (let i = 0; i < s.length; i++) {
+    chars[i] = s[i];
+  }
+  return chars.length;
+}
+
+let chars = ["a","b","c"];
+console.log(compress(chars));
