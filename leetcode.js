@@ -668,6 +668,20 @@ const moveZeroes = (nums) => {
     }
   return nums;
 }
-
 let nums = [0, 1, 0, 3, 12];
 console.log(moveZeroes(nums));
+
+// Alternate solution using array destructuring:
+const moveZeroes2 = (nums) => {
+  let g = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      g++;
+    } else {
+      [nums[i - g], nums[i]] = [nums[i], nums[i - g]];
+    }
+  }
+  return nums;
+}
+let nums2 = [0, 1, 0, 3, 12];
+console.log(moveZeroes2(nums2));
