@@ -590,6 +590,7 @@ productExceptSelf2(nums);
 //  After you are done modifying the input array, return the new length of the array.
 //  You must write an algorithm that uses only constant extra space.
 
+/*
 const compress = (chars) => {
   let s = "";
   let current = 0;
@@ -629,3 +630,44 @@ const compress = (chars) => {
 
 let chars = ["a","b","c"];
 console.log(compress(chars));
+ */
+
+
+// 05/22/2023 - #283. Move Zeroes
+// TODO: Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+//  Note that you must do this in-place without making a copy of the array.
+
+const moveZeroes = (nums) => {
+  let i = 0;
+  let c = 0;
+  let p, t;
+
+  for (const num of nums) {
+    if (num === 0) {
+      c++;
+    }
+  }
+  t = c;
+  c = 0;
+
+    while (i < nums.length) {
+      if (c === t) {
+        break;
+      }
+      p = nums[i];
+      if (nums[i] === 0) {
+        nums.splice(i, 1);
+        nums.splice(nums.length, 0, p);
+        c++;
+      }
+      if (nums[i] === 0) {
+        i = 0;
+      } else {
+        i++;
+      }
+    }
+  return nums;
+}
+
+let nums = [0, 1, 0, 3, 12];
+console.log(moveZeroes(nums));
