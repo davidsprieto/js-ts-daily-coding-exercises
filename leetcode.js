@@ -773,3 +773,64 @@ let nums2 = [80, 75, 31, 85, 66, 36, 95, 45, 59, 9, 75, 35, 70, 35, 93, 59, 99, 
 let k2 = 88;
 console.log(maxOperations2(nums2, k2));
  */
+
+
+// 05/25/2023 - #643. Maximum Average Subarray I
+// TODO: You are given an integer array nums consisting of n elements, and an integer k.
+//  Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value.
+//  Any answer with a calculation error less than 10-5 will be accepted.
+
+/*
+// First solution: time limit exceeded
+const findMaxAverage = (nums, k) => {
+    let start = 0, end = k, pointer;
+
+    let subarray = nums.slice(start, end);
+    let sum = subarray.reduce((a, c) => {
+        return a + c;
+    }, 0);
+    let maxAverage = sum / k;
+    start++;
+    end++;
+
+    while (end <= nums.length) {
+        subarray = nums.slice(start, end);
+        pointer = maxAverage;
+        sum = subarray.reduce((a, c) => {
+            return a + c;
+        }, 0);
+        maxAverage = sum / k;
+        if (maxAverage < pointer) {
+            maxAverage = pointer;
+        }
+        start++;
+        end++;
+    }
+    return maxAverage.toFixed(5);
+}
+
+let nums = [1, 12, -5, -6, 50, 3];
+let k = 4;
+console.log(findMaxAverage(nums, k));
+ */
+
+// Alternate solution using 'sliding window' algorithm approach:
+const findMaxAverage2 = (nums, k) => {
+    let max = -Infinity, runningSum = 0, start = 0, average;
+
+    for (let end = 0; end < nums.length; end++) {
+        runningSum += nums[end];
+
+        if (end - start === k - 1) {
+            average = runningSum / k;
+            max = Math.max(max, average);
+            runningSum -= nums[start];
+            start++;
+        }
+    }
+    return max.toFixed(5);
+}
+
+let nums2 = [1, 12, -5, -6, 50, 3];
+let k2 = 4;
+console.log(findMaxAverage2(nums2, k2));
