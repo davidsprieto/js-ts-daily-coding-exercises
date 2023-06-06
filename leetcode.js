@@ -812,7 +812,6 @@ const findMaxAverage = (nums, k) => {
 let nums = [1, 12, -5, -6, 50, 3];
 let k = 4;
 console.log(findMaxAverage(nums, k));
- */
 
 // Alternate solution using 'sliding window' algorithm approach:
 const findMaxAverage2 = (nums, k) => {
@@ -834,3 +833,75 @@ const findMaxAverage2 = (nums, k) => {
 let nums2 = [1, 12, -5, -6, 50, 3];
 let k2 = 4;
 console.log(findMaxAverage2(nums2, k2));
+ */
+
+
+// 06/05/2023 - #1456. Maximum Number of Vowels in a Substring of Given Length
+// TODO: Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.
+//  Vowel letters in English are 'a', 'e', 'i', 'o', and 'u'.
+
+/*
+// First solution: time limit exceeded
+const maxVowels = (s, k) => {
+    let max = 0, start = 0, end = k, array = s.split("");
+
+    while (end <= array.length) {
+        let runningTotal = 0;
+
+        for (let i = start; i < end; i++) {
+            if (array[i].match(/[aeiou]/gi)) {
+                runningTotal++;
+            }
+        }
+        max = Math.max(max, runningTotal);
+        if (max === k) {
+            return max;
+        }
+        end++;
+        start++;
+    }
+    return max;
+}
+
+let s = "leetcode";
+let k = 3;
+console.log(maxVowels(s, k));
+ */
+
+// Second solution:
+const maxVowels2 = (s, k) => {
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
+    let max = 0, current = 0;
+
+    for (let i = 0; i < k; i++) {
+        if (vowels.has(s[i])) {
+            max++;
+        }
+    }
+
+    if (max === k) {
+        return max;
+    }
+
+    current = max;
+
+    for (let i = 1; i <= s.length - k; i++) {
+        if (vowels.has(s[i - 1])) {
+            current--;
+        }
+        if (vowels.has(s[i + k - 1])) {
+            current++;
+        }
+
+        if (current === k) {
+            return current;
+        }
+        if (current > max) {
+            max = current;
+        }
+    }
+    return max;
+}
+let s2 = "leetcode";
+let k2 = 3;
+console.log(maxVowels2(s2, k2));
