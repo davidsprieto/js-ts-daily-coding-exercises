@@ -944,6 +944,7 @@ console.log(longestOnes(nums, k));
 // TODO: Given a binary array nums, you should delete one element from it.
 //  Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return 0 if there is no such subarray.
 
+/*
 const longestSubarray = (nums) => {
     let start = 0, count = 0, longest = 0, remove = 1, zeroCount = 0;
 
@@ -975,3 +976,29 @@ const longestSubarray = (nums) => {
 }
 let nums = [0, 1, 1, 1, 0, 1, 1, 0, 1];
 console.log(longestSubarray(nums));
+ */
+
+
+// 06/06/2023 - # 1732. Find the Highest Altitude
+// TODO: There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes.
+//  The biker starts his trip on point 0 with altitude equal 0.
+//  You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i and i + 1 for all (0 <= i < n).
+//  Return the highest altitude of a point.
+
+const largestAltitude = (gain) => {
+    let current, next;
+
+    gain.unshift(0);
+
+    let highest = Math.max(gain[0], gain[1]);
+
+    for (let i = 1; i < gain.length - 1; i++) {
+        current = gain[i];
+        next = gain[i + 1];
+        gain[i + 1] = current + next;
+        highest = Math.max(highest, gain[i + 1]);
+    }
+    return highest;
+}
+let gain = [-4, -3, -2, -1, 4, 3, 2];
+console.log(largestAltitude(gain));
