@@ -910,6 +910,7 @@ console.log(maxVowels2(s2, k2));
 // 06/07/2023 - #1004. Max Consecutive Ones III
 // TODO: Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
 
+/*
 const longestOnes = (nums, k) => {
     let start = 0, count = 0, longest = 0, flip = k;
 
@@ -936,3 +937,41 @@ const longestOnes = (nums, k) => {
 let nums = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0];
 let k = 2;
 console.log(longestOnes(nums, k));
+ */
+
+
+// 06/08/2023 - #1493. Longest Subarray of 1's After Deleting One Element
+// TODO: Given a binary array nums, you should delete one element from it.
+//  Return the size of the longest non-empty subarray containing only 1's in the resulting array. Return 0 if there is no such subarray.
+
+const longestSubarray = (nums) => {
+    let start = 0, count = 0, longest = 0, remove = 1, zeroCount = 0;
+
+    for (let window = 0; window < nums.length; window++) {
+        const element = nums[window];
+
+        if (element === 0) {
+            zeroCount++;
+        }
+
+        if (element === 1) {
+            count++;
+        } else if (element === 0 && remove !== 0) {
+            remove--;
+        } else {
+            longest = Math.max(count, longest);
+            window = start;
+            start++;
+            count = 0;
+            remove = 1;
+        }
+    }
+    longest = Math.max(count, longest);
+
+    if (zeroCount) {
+        return longest;
+    }
+    return longest - 1;
+}
+let nums = [0, 1, 1, 1, 0, 1, 1, 0, 1];
+console.log(longestSubarray(nums));
