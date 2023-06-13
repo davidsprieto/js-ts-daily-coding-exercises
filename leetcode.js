@@ -979,12 +979,13 @@ console.log(longestSubarray(nums));
  */
 
 
-// 06/06/2023 - # 1732. Find the Highest Altitude
+// 06/06/2023 - #1732. Find the Highest Altitude
 // TODO: There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes.
 //  The biker starts his trip on point 0 with altitude equal 0.
 //  You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i and i + 1 for all (0 <= i < n).
 //  Return the highest altitude of a point.
 
+/*
 const largestAltitude = (gain) => {
     let current, next;
 
@@ -1002,3 +1003,36 @@ const largestAltitude = (gain) => {
 }
 let gain = [-4, -3, -2, -1, 4, 3, 2];
 console.log(largestAltitude(gain));
+ */
+
+
+// 06/13/2023 - #2215. Find the Difference of Two Arrays
+// TODO: Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+//  answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+//  answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+//  Note that the integers in the lists may be returned in any order.
+
+const findDifference = (nums1, nums2) => {
+    const set1 = new Set(nums1);
+    const set2 = new Set(nums2);
+    let answer;
+    const numbers1 = [];
+    const numbers2 = [];
+
+    for (let i = 0; i < nums1.length; i++) {
+        if (!set2.has(nums1[i]) && !numbers1.includes(nums1[i]) && nums1[i] !== undefined) {
+            numbers1.push(nums1[i]);
+        }
+    }
+
+    for (let i = 0; i < nums2.length; i++) {
+        if (!set1.has(nums2[i]) && !numbers2.includes(nums2[i]) && nums2[i] !== undefined) {
+            numbers2.push(nums2[i]);
+        }
+    }
+    answer = [[...numbers1], [...numbers2]];
+    return answer;
+}
+let nums1 = [-73];
+let nums2 = [-66, 9, -54, -32, 94, 11];
+console.log(findDifference(nums1, nums2));
