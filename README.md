@@ -1,4 +1,4 @@
-# Daily Coding Exercises - Leetcode & Codeup Coding Challenges for Daily Coding Practice.
+# Daily Coding Exercises - Leetcode & Codeup Coding Challenges
 
 Programming Languages:
 - TypeScript
