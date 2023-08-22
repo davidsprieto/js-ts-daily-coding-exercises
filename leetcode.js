@@ -1012,6 +1012,7 @@ console.log(largestAltitude(gain));
 //  answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
 //  Note that the integers in the lists may be returned in any order.
 
+/*
 const findDifference = (nums1, nums2) => {
     const set1 = new Set(nums1);
     const set2 = new Set(nums2);
@@ -1036,3 +1037,36 @@ const findDifference = (nums1, nums2) => {
 let nums1 = [-73];
 let nums2 = [-66, 9, -54, -32, 94, 11];
 console.log(findDifference(nums1, nums2));
+ */
+
+
+// 08/22/2023 - #1207. Unique Number of Occurrences
+// TODO: Given an array of integers 'arr', return true if the number of occurrences of each value in the array is unique
+//  or false otherwise.
+
+const uniqueOccurrences = (arr) => {
+    const map = new Map([]);
+
+    for (const num of arr) {
+        if (map.has(num)) {
+            let value = map.get(num);
+            map.set(num, value + 1);
+        } else {
+            map.set(num, 1);
+        }
+    }
+
+    let set = new Set();
+
+    for (const [key, value] of map) {
+        if (set.has(value)) {
+            return false;
+        } else {
+            set.add(value);
+        }
+    }
+    return true;
+}
+
+let arr = [1, 2, 2, 1, 1, 3];
+console.log(uniqueOccurrences(arr));
