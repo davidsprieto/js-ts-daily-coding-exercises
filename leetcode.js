@@ -1088,8 +1088,32 @@ const closeStrings = (word1, word2) => {
         return false;
     }
 
+    const chars1 = getCharCount(word1);
+    const chars2= getCharCount(word2);
+
+    for (let i = 0; i < chars1.letters.length; i++) {
+        if (chars1.letters[i] !== chars2.letters[i] || chars1.times[i] !== chars2.times[i]) {
+            return false;
+        }
+    }
+    return true;
 }
 
-const getLetterCount = (word) => {
+const getCharCount = (word) => {
     const map = {};
+
+    for (const char of word) {
+        if (!map[char]) {
+            map[char] = 0;
+        }
+        map[char]++;
+    }
+
+    return {
+        letters: Object.keys(map).sort(),
+        times: Object.values(map).sort((a, b) => a - b)
+    }
 }
+
+let word1 = "cabbba", word2 = "abbccc";
+console.log(closeStrings(word1, word2));
