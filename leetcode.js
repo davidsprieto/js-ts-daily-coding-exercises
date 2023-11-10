@@ -1083,6 +1083,7 @@ console.log(uniqueOccurrences(arr));
 //  You can use the operations on either string as many times as necessary.
 //  Given two strings, word1 and word2, return true if word1 and word2 are close, and false otherwise.
 
+/*
 const closeStrings = (word1, word2) => {
     if (word1.length !== word2.length) {
         return false;
@@ -1117,3 +1118,17 @@ const getCharCount = (word) => {
 
 let word1 = "cabbba", word2 = "abbccc";
 console.log(closeStrings(word1, word2));
+ */
+
+
+// 11/09/2023 - Reverse Words in a Sentence
+// TODO: Write a function called 'reverseWords' that takes a sentence as a parameter and
+//  returns a new sentence with the words reversed.
+
+const reverseWords = (sentence) => {
+    sentence = sentence.split("").reverse().join("");
+    return sentence.split(" ").reverse().join(" ");
+}
+
+let sentence = "Hello World";
+console.log(reverseWords(sentence));
